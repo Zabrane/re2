@@ -9,6 +9,11 @@ case "$(uname -s)" in
     CYGWIN*|MINGW*)
         IS_WINDOWS=yes
         ;;
+    Darwin)
+        ## avoid binutils/ar from Homebrew
+        ## https://github.com/dukesoferl/re2/issues/36#issuecomment-466002748
+        export PATH=/usr/bin/ar:$PATH
+        ;;
 esac
 
 case "$1" in
