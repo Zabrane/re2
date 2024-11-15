@@ -10,9 +10,12 @@ case "$(uname -s)" in
         IS_WINDOWS=yes
         ;;
     Darwin)
-        ## avoid binutils/ar from Homebrew
+        ## . avoid binutils/ar from Homebrew
         ## https://github.com/dukesoferl/re2/issues/36#issuecomment-466002748
-        export PATH=/usr/bin/ar:$PATH
+        ## . Clang archive or linking issue. Xcode 15.0.1
+        ## https://forums.developer.apple.com/forums/thread/741149
+        unset PATH
+        export PATH=/bin:/sbin:/usr/bin
         ;;
 esac
 
